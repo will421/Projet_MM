@@ -15,9 +15,12 @@ var phone = io
   	});
   	socket.on('rotation',function(msg) {
   		console.log("rotation:"+JSON.stringify(msg));
-  		msg.a = radians(msg.a);
+  		/*msg.a = radians(msg.a);
   		msg.b = radians(msg.b+180);
-  		msg.g = radians((msg.g+90)*2);
+  		msg.g = radians((msg.g+90)*2);*/
+			/*msg.a = radians(msg.a);
+			msg.b = radians(msg.b);
+			msg.g = radians(msg.g);*/
   		table.emit("rotation",msg);
   	});
   });

@@ -1,7 +1,7 @@
 
 var container, stats;
 var renderer,scene,camera;
-var cube;
+var cube,plane,line;
 var geometry,material;
 
 var mouseX = 0, mouseY = 0;
@@ -17,11 +17,15 @@ animate();
 
 function init() 
 {
-	container = document.getElementById( 'ThreeJS' );
+	container = document.createElement( 'div' );
+	document.body.appendChild( container );
 	
 	scene = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera.position.y = 150;
+	camera.position.z = 500;
+	
+	
 	//renderer
 	// create and start the renderer; choose antialias setting.
 	if ( Detector.webgl )
@@ -30,16 +34,54 @@ function init()
 		renderer = new THREE.CanvasRenderer(); 
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	
+	renderer.setClearColor( 0xf0f0f0 );
 
 	container.appendChild( renderer.domElement );
 
-	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-	var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+// Cube
+
+	var geometry = new THREE.BoxGeometry( 200, 200, 200 );
+
+	for ( var i = 0; i < geometry.faces.length; i += 2 ) {
+
+		var hex = Math.random() * 0xffffff;
+		geometry.faces[ i ].color.setHex( hex );
+		geometry.faces[ i + 1 ].color.setHex( hex );
+
+	}
+
+	var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors, overdraw: 0.5 } );
+
 	cube = new THREE.Mesh( geometry, material );
+	cube.position.y = 150;
 	scene.add( cube );
 
-	camera.position.z = 5;
+	// Plane
+
+	var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
+	geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+
+	var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
+
+	plane = new THREE.Mesh( geometry, material );
+	scene.add( plane );
+	
+	
+	/*// Repere
+	
+	var material = new THREE.LineBasicMaterial({
+		color: 0x0000ff
+	});
+	
+	var geometry = new THREE.Geometry();
+	geometry.vertices.push(new THREE.Vector3(0,0,0));
+	geometry.vertices.push(new THREE.Vector3(150,0,0));
+	geometry.vertices.push(new THREE.Vector3(0,0,0));
+	geometry.vertices.push(new THREE.Vector3(0,150,0));
+	geometry.vertices.push(new THREE.Vector3(0,0,0));
+	geometry.vertices.push(new THREE.Vector3(0,0,150));
+	var line = new THREE.Line(geometry, material);
+	scene.add(line);*/
 	
 	
 	///////////

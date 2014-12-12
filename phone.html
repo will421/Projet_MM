@@ -29,10 +29,10 @@
 
     <pre class="output"></pre>
 
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/socket.io-1.2.0.js"></script>
+    <script src="js/jquery-1.11.1.js"></script>
     <script>
-     var server = io.connect('http://localhost/phone');
+     var server = io.connect('192.168.173.1:8081/phone');
       
       server.on('client2T', function (msg) {
         console.log("Receivedfrom2:"+msg)
@@ -52,8 +52,10 @@
         var y = event.gamma; // In degree in the range [-90,90]
         var z = event.alpha; //[0,360]
 
-        output.innerHTML  = "beta : " + x + "\n";
+				output.innerHTML = "alpha :" + z+ "\n";
+        output.innerHTML += "beta : " + x + "\n";
         output.innerHTML += "gamma: " + y + "\n";
+				output.innerHTML += "absolute: " +event.absolute + "\n"; 
 
         // Because we don't want to have the device upside down
         // We constrain the x value to the range [-90,90]
@@ -69,22 +71,33 @@
         // It center the positioning point to the center of the ball
         ball.style.top  = (maxX*x/180 - 10) + "px";
         ball.style.left = (maxY*y/180 - 10) + "px";
+		
+		
+				data= {a:event.alpha,b:event.beta,g:event.gamma};
+				server.emit("rotation",data);
+		
       }
 
       window.addEventListener('deviceorientation', handleOrientation);
       </script>
       <script>
-        var alpha = 0;
+        /*var alpha = 0;
         var beta = 0;
         setInterval(function(){
           alpha = alpha+2;
           alpha = alpha%360;
           beta = beta +2;
           beta = (beta%360);
-          var gamma = Math.floor((Math.random()*180)-90);
-          var data= {a:alpha,b:beta-180,g:gamma};
+          var gamma = Math.floor((Math.random()*180));
+          var data= {a:alpha,b:beta-180,g:gamma-90};
           server.emit("rotation",data);
-        },10);
+        },10);*/
       </script>
+			<script>
+			window.addEventListener("compassneedscalibration", function(event) {
+				alert('Your compass needs calibrating! Wave your device in a figure-eight motion');
+				event.preventDefault();
+			}, true);
+			</script>
   </body>
 </html>

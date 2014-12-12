@@ -1,8 +1,16 @@
 <!doctype html>
 <html>
-  <head>
-  </head>
-  <body id="ThreeJS">
+	<head>
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+  <body>
     <script src="js/three.min.js"></script>
     <script src="js/loaders/DDSLoader.js"></script>
     <script src="js/loaders/MTLLoader.js"></script>
@@ -11,8 +19,8 @@
     <script src="js/Stats.js"></script>
     <script src="js/Detector.js"></script>
     <script src="mainThree.js"></script>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/socket.io-1.2.0.js"></script>
+    <script src="js/jquery-1.11.1.js"></script>
 <script>
   var server = io.connect('http://localhost/table');
   
@@ -21,9 +29,9 @@
   });
   server.on('rotation',function(msg) {
     console.log("Rotation:"+JSON.stringify(msg));
-    cube.rotation.x = msg.a;
-    cube.rotation.y = msg.b;
-    //cube.rotation.z = msg.g;
+    cube.rotation.x = msg.g;
+    //cube.rotation.y = msg.a;
+		cube.rotation.z = msg.b;
   });
   
 </script>
