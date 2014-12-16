@@ -20,7 +20,32 @@ var RRServer = {
 		{
 			return deg * (math.PI/180);
 		}
-
+		
+		var state = 1; //1 if screen up and 0 if screen down
+		var lastGamma = 0
+		
+		function dealWithGamma(gamma)
+		{
+			if(math.abs(gamma-lastGamma)>130)
+			{
+				state = (state+1)%2;
+				console.log("*****************");
+				console.log("***State change to "+state+" **");
+				console.log("*****************");
+			}
+			lastGamma = gamma
+		
+			if(state==1)
+			{
+				return gamma
+			}
+			else
+			{
+				return gamma+180
+			}
+		
+		}
+		
 		var phone = io
 		  .of('/phone')
 		  .on('connection', function (socket) {
@@ -30,12 +55,12 @@ var RRServer = {
 			});
 			socket.on('rotation',function(msg) {
 				console.log("rotation:"+JSON.stringify(msg));
-  		/*msg.a = radians(msg.a);
-  		msg.b = radians(msg.b+180);
-  		msg.g = radians((msg.g+90)*2);*/
+
 			msg.a = radians(msg.a);
+			msg.g = radians(dealWithGamma(msg.g));
+			
 			msg.b = radians(msg.b);
-			msg.g = radians(msg.g);
+			
 				table.emit("rotation",msg);
 			});
 		  });

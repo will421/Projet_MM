@@ -11,29 +11,28 @@
 		</style>
 	</head>
   <body>
-    <script src="js/three.min.js"></script>
+	
+		<form action="">
+			<input id="axeX" type="checkbox">X rotation<br>
+			<input id="axeY" type="checkbox" >Y rotation <br>
+			<input id="axeZ" type="checkbox" >Z rotation 
+		</form>
+	
+    <!--<script src="js/three.min.js"></script>
     <script src="js/loaders/DDSLoader.js"></script>
     <script src="js/loaders/MTLLoader.js"></script>
     <script src="js/loaders/OBJLoader.js"></script>
     <script src="js/loaders/OBJMTLLoader.js"></script>
     <script src="js/Stats.js"></script>
     <script src="js/Detector.js"></script>
-    <script src="mainThree.js"></script>
+		<script src="js/CombinedCamera.js"></script>
+		<script src="js/jquery-1.11.1.js"></script>-->
     <script src="js/socket.io-1.2.0.js"></script>
-    <script src="js/jquery-1.11.1.js"></script>
-<script>
-  var server = io.connect('http://localhost/table');
-  
-  server.on('client1T', function (msg) {
-    console.log("Receivedfrom1:"+msg)
-  });
-  server.on('rotation',function(msg) {
-    console.log("Rotation:"+JSON.stringify(msg));
-    cube.rotation.x = msg.g;
-    //cube.rotation.y = msg.a;
-		cube.rotation.z = msg.b;
-  });
-  
-</script>
+    
+		<script src="js/require.js"></script>
+		<script>
+			require(["mainTable"])
+		</script>
+
   </body>
 </html>

@@ -1,3 +1,6 @@
+define(['js/domReady',"order!js/three.min","order!js/CombinedCamera","order!js/loaders/DDSLoader","order!js/loaders/MTLLoader",
+"order!js/loaders/OBJLoader","order!js/loaders/OBJMTLLoader","order!js/Stats","order!js/Detector"], function(domReady) {
+
 
 var container, stats;
 var renderer,scene,camera;
@@ -10,9 +13,18 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
 
-// initialization
-init();
-animate();
+domReady(function () {
+    //This function is called once the DOM is ready.
+    //It will be safe to query the DOM and manipulate
+    //DOM nodes in this function.
+		
+		// initialization
+		init();
+		animate();
+		
+});
+
+
 
 
 function init() 
@@ -21,9 +33,11 @@ function init()
 	document.body.appendChild( container );
 	
 	scene = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+	//camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera = new THREE.CombinedCamera(window.innerWidth, window.innerHeight, 70, 1, 1000, 1, 1000);
 	camera.position.y = 150;
 	camera.position.z = 500;
+	camera.position.x = 200
 	
 	
 	//renderer
@@ -115,4 +129,11 @@ function update()
 {
 	stats.update();
 }
+
+
+
+return {"object":cube,"camera":camera}
+
+} );
+
 
