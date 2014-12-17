@@ -59,7 +59,7 @@ function init() {
 			 for (var i = event.resultIndex; i < event.results.length; ++i) {
 				 // if (event.results[i].isFinal) {
 					 console.log( event.results[i][0].transcript );
-                                        phrase_reconnue = phrase_reconnue + " " + event.results[i][0].transcript ;
+                                        phrase_reconnue = event.results[i][0].transcript ;
 					//
                                         
 				}
@@ -77,9 +77,6 @@ function init() {
                                             data= {a:"delete"};
                                             server.emit("Vocal",data);
                                             break;
-
-                            // attention a l'espace au début de le phrase.
-                            
                                 };  
                                     
                  };
