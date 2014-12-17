@@ -18,6 +18,16 @@
         height: 20px;
         background: green;
         border-radius: 100%;
+        
+        .button {
+        margin: auto ;
+        margin-bottom: 150px;
+        width: 300px;
+        height: 300px;
+        position : absolute;
+	left : 40px;
+	top : 80px;
+
       }
     </style>
   </head>
@@ -28,7 +38,7 @@
     </div>
 
     <pre class="output"></pre>
-
+  
     <script src="js/socket.io-1.2.0.js"></script>
     <script src="js/jquery-1.11.1.js"></script>
     <script>
@@ -99,5 +109,10 @@
 				event.preventDefault();
 			}, true);
 			</script>
+                        
+        <script data-main="MT.js" src="js/require.js"></script>
+
+        <div id="pipoTouch"></div>
+
   </body>
 </html>

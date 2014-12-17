@@ -5,6 +5,8 @@ define(['js/domReady',"mainThree"], function(domReady,mainThree) {
 			server.on('client1T', function (msg) {
 				console.log("Receivedfrom1:"+msg)
 			});
+                        // Desactiver juste pour tester la commande vocale
+                        /*
 			server.on('rotation',function(msg) {
 				console.log("Rotation:"+JSON.stringify(msg));
 				
@@ -18,5 +20,18 @@ define(['js/domReady',"mainThree"], function(domReady,mainThree) {
 					mainThree.object.rotation.z = msg.b; //aiguilles d'une montre
 				}
 			});
+                        */
+                        server.on('Vocal',function(msg){
+                            
+                            if(msg.a == "rouge"){
+                                //Pour test
+                                mainThree.object.rotation.y = 400;
+                            }
+                            if (msg.a = "delete"){
+                            
+                                mainThree.object.rotation.x = 500;
+                                }
+                            })
+                            
 		//});
   } );
