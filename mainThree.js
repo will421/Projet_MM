@@ -1,6 +1,6 @@
-define(['js/domReady',"order!js/three.min","order!js/CombinedCamera","order!js/loaders/DDSLoader","order!js/loaders/MTLLoader",
-"order!js/loaders/OBJLoader","order!js/loaders/OBJMTLLoader","order!js/Stats","order!js/Detector"], function(domReady) {
-
+define(['js/domReady',"order!js/three.min","order!js/CombinedCamera",
+"order!js/Stats","order!js/Detector"], function(domReady) {
+	
 
 var container, stats;
 var renderer,scene,camera;

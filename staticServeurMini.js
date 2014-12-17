@@ -63,10 +63,10 @@ var RRServer = {
 
                                         table.emit("rotation",msg);
 			});
-                        socket.on('Vocal',function(msg){
-                            console.log("Vocal"+msg );
-                            table.emit("Vocal",msg);
-                        })
+			socket.on('Vocal',function(msg){
+					console.log("Vocal"+msg );
+					table.emit("Vocal",msg);
+			})
 		  });
 
 		var table = io
