@@ -55,14 +55,18 @@ var RRServer = {
 			});
 			socket.on('rotation',function(msg) {
 				console.log("rotation:"+JSON.stringify(msg));
+                                
+                                msg.a = radians(msg.a);
+                                msg.g = radians(dealWithGamma(msg.g));
 
-			msg.a = radians(msg.a);
-			msg.g = radians(dealWithGamma(msg.g));
-			
-			msg.b = radians(msg.b);
-			
-				table.emit("rotation",msg);
+                                msg.b = radians(msg.b);
+
+                                        table.emit("rotation",msg);
 			});
+                        socket.on('Vocal',function(msg){
+                            console.log("Vocal"+msg );
+                            table.emit("Vocal",msg);
+                        })
 		  });
 
 		var table = io
