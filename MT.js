@@ -7,7 +7,7 @@ function init() {
 	// On definie qu'elle division (html) on souhaite recuperer.
 	var divpipoTouch = document.getElementById('pipoTouch');
         // Connexion avec le serveur table
-	 var server = io.connect('192.168.173.1:8081/phone');
+	var server = io.connect('192.168.173.1:8081/phone');
     
       server.on('client2T', function (msg) {
           // On vérifie si la connexion est okay
@@ -55,7 +55,7 @@ function init() {
                                             server.emit("Vocal",data);
                                             break;
                                             
-                                        case(" suprrimer"):
+                                        case(" supprimer"):
                                             data= {a:"delete"};
                                             server.emit("Vocal",data);
                                             break;

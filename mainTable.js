@@ -6,21 +6,24 @@ define(['js/domReady',"mainThree"], function(domReady,mainThree) {
 				console.log("Receivedfrom1:"+msg)
 			});
                         // Desactiver juste pour tester la commande vocale
-                        /*
+                        
 			server.on('rotation',function(msg) {
 				console.log("Rotation:"+JSON.stringify(msg));
 				
 				if(document.getElementById("axeX").checked){
-					mainThree.object.rotation.x = msg.g; //avant-arriere
+                                    pass;
+                                    //mainThree.object.rotation.x = msg.g; //avant-arriere
 				}
 				if(document.getElementById("axeY").checked){
-					mainThree.object.rotation.y = msg.a; //gauche-droite
+                                    pass;
+                                    //mainThree.object.rotation.y = msg.a; //gauche-droite
 				}
 				if(document.getElementById("axeZ").checked){
-					mainThree.object.rotation.z = msg.b; //aiguilles d'une montre
+                                    pass;
+        					//mainThree.object.rotation.z = msg.b; //aiguilles d'une montre
 				}
 			});
-                        */
+                        
                         server.on('Vocal',function(msg){
                             
                             if(msg.a == "rouge"){
