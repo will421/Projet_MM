@@ -4,7 +4,7 @@ define(['js/domReady',"order!js/three.min","order!js/CombinedCamera","order!js/l
 
 var container, stats;
 var renderer,scene,camera;
-var cube,plane,line;
+var cube,plane,line,object
 var geometry,material;
 
 var mouseX = 0, mouseY = 0;
@@ -51,7 +51,8 @@ function init()
 	renderer.setClearColor( 0xf0f0f0 );
 
 	container.appendChild( renderer.domElement );
-
+	
+	
 // Cube
 
 	var geometry = new THREE.BoxGeometry( 200, 200, 200 );
@@ -79,23 +80,6 @@ function init()
 
 	plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
-	
-	
-	/*// Repere
-	
-	var material = new THREE.LineBasicMaterial({
-		color: 0x0000ff
-	});
-	
-	var geometry = new THREE.Geometry();
-	geometry.vertices.push(new THREE.Vector3(0,0,0));
-	geometry.vertices.push(new THREE.Vector3(150,0,0));
-	geometry.vertices.push(new THREE.Vector3(0,0,0));
-	geometry.vertices.push(new THREE.Vector3(0,150,0));
-	geometry.vertices.push(new THREE.Vector3(0,0,0));
-	geometry.vertices.push(new THREE.Vector3(0,0,150));
-	var line = new THREE.Line(geometry, material);
-	scene.add(line);*/
 	
 	
 	///////////

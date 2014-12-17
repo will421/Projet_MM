@@ -28,11 +28,11 @@ define(['js/domReady',"mainThree"], function(domReady,mainThree) {
                             
                             if(msg.a == "rouge"){
                                 //Pour test
-                                mainThree.object.rotation.y = 400;
+                                mainThree.object.rotation.y += 0.1;
                             }
                             if (msg.a = "delete"){
                             
-                                mainThree.object.rotation.x = 500;
+                                mainThree.object.rotation.x += 0.1;
                                 }
                             })
                             
