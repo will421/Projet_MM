@@ -11,15 +11,13 @@ define(['js/domReady',"mainThree"], function(domReady,mainThree) {
 				console.log("Rotation:"+JSON.stringify(msg));
 				
 				if(document.getElementById("axeX").checked){
-                                    pass;
                                     mainThree.object.rotation.x = msg.g; //avant-arriere
 				}
 				if(document.getElementById("axeY").checked){
                                     mainThree.object.rotation.y = msg.a; //gauche-droite
 				}
 				if(document.getElementById("axeZ").checked){
-                                    pass;
-        				mainThree.object.rotation.z = msg.b; //aiguilles d'une montre
+                                    mainThree.object.rotation.z = msg.b; //aiguilles d'une montre
 				}
 			});
                         
