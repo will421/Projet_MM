@@ -1,9 +1,9 @@
 define(['js/domReady',"order!js/three.min","order!js/CombinedCamera",
-"order!js/Stats","order!js/Detector"], function(domReady) {
+"order!js/Stats","order!js/Detector","order!js/OrbitControls"], function(domReady) {
 	
 
 var container, stats;
-var renderer,scene,camera;
+var renderer,scene,camera,controls
 var cube,plane,line,object
 var geometry,material;
 
@@ -34,10 +34,15 @@ function init()
 	
 	scene = new THREE.Scene();
 	//camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-	camera = new THREE.CombinedCamera(window.innerWidth, window.innerHeight, 70, 1, 1000, 1, 1000);
-	camera.position.y = 150;
+	camera = new THREE.CombinedCamera(window.innerWidth, window.innerHeight, 70, 1, 2000, 1, 2000);
+	camera.position.y = 250;
 	camera.position.z = 500;
 	camera.position.x = 200
+	
+	controls = new THREE.OrbitControls( camera );
+	//controls.damping = 0.2;
+	controls.addEventListener( 'change', render );
+	
 	
 	
 	//renderer
@@ -80,6 +85,8 @@ function init()
 
 	plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
+	
+	
 	
 	
 	///////////

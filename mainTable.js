@@ -21,19 +21,27 @@ define(['js/domReady',"mainThree"], function(domReady,mainThree) {
 				}
 			});
                         
-                        server.on('Vocal',function(msg){
-                            
-                            if(msg.a == "rouge"){
-                                //Pour test
-                                mainThree.object.rotation.y += 0.1;
-                            }
-                            if (msg.a = "delete"){
-                            
-                                mainThree.object.visible = false;
-                                }
-                            if (msg.a = "")
-                                pass;
-                            })
+			server.on('Vocal',function(msg){
+					
+					if(msg.a == "rouge"){
+							//Pour test
+							mainThree.object.rotation.y += 0.1;
+					}
+					if (msg.a == "delete"){
+					
+							mainThree.object.visible = false;
+							}
+					if(msg.a == "switch")
+					{
+						if(mainThree.camera.inOrthographicMode){
+							mainThree.camera.toPerspective();
+						} else if(mainThree.camera.inPerspectiveMode){
+							mainThree.camera.toOrthographic();
+						}
+					}
+					if (msg.a = "")
+							pass;
+					})
                             
 		//});
   } );

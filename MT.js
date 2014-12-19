@@ -77,6 +77,10 @@ function init() {
                                             data= {a:"delete"};
                                             server.emit("Vocal",data);
                                             break;
+																				case("switch"):
+																					data={a:"switch"};
+																					server.emit("Vocal",data);
+																					break;
                                 };  
                                     
                  };

@@ -90,10 +90,10 @@
 				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
 				var loader = new THREE.OBJMTLLoader();
-				//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
+				loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
 				//loader.load( 'obj/luke/luke.obj', 'obj/luke/luke.mtl', function ( object ) {
 				//loader.load( 'obj/han/han.obj', 'obj/han/han.mtl', function ( object ) {
-				loader.load( 'obj/brick/legoBrick.obj', 'obj/brick/legoBrick.mtl', function ( object ) {
+				//loader.load( 'obj/brick/legoBrick.obj', 'obj/brick/legoBrick.mtl', function ( object ) {
 					object.position.y = 0;
 					scene.add( object );
 
