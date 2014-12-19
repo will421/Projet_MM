@@ -1,10 +1,10 @@
-define(['js/domReady',"order!js/three.min","order!js/CombinedCamera","order!js/loaders/DDSLoader","order!js/loaders/MTLLoader",
-"order!js/loaders/OBJLoader","order!js/loaders/OBJMTLLoader","order!js/Stats","order!js/Detector"], function(domReady) {
-
+define(['js/domReady',"order!js/three.min","order!js/CombinedCamera",
+"order!js/Stats","order!js/Detector","order!js/OrbitControls"], function(domReady) {
+	
 
 var container, stats;
-var renderer,scene,camera;
-var cube,plane,line;
+var renderer,scene,camera,controls
+var cube,plane,line,object
 var geometry,material;
 
 var mouseX = 0, mouseY = 0;
@@ -34,10 +34,15 @@ function init()
 	
 	scene = new THREE.Scene();
 	//camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-	camera = new THREE.CombinedCamera(window.innerWidth, window.innerHeight, 70, 1, 1000, 1, 1000);
-	camera.position.y = 150;
+	camera = new THREE.CombinedCamera(window.innerWidth, window.innerHeight, 70, 1, 2000, 1, 2000);
+	camera.position.y = 250;
 	camera.position.z = 500;
 	camera.position.x = 200
+	
+	controls = new THREE.OrbitControls( camera );
+	//controls.damping = 0.2;
+	controls.addEventListener( 'change', render );
+	
 	
 	
 	//renderer
@@ -51,7 +56,8 @@ function init()
 	renderer.setClearColor( 0xf0f0f0 );
 
 	container.appendChild( renderer.domElement );
-
+	
+	
 // Cube
 
 	var geometry = new THREE.BoxGeometry( 200, 200, 200 );
@@ -81,21 +87,6 @@ function init()
 	scene.add( plane );
 	
 	
-	/*// Repere
-	
-	var material = new THREE.LineBasicMaterial({
-		color: 0x0000ff
-	});
-	
-	var geometry = new THREE.Geometry();
-	geometry.vertices.push(new THREE.Vector3(0,0,0));
-	geometry.vertices.push(new THREE.Vector3(150,0,0));
-	geometry.vertices.push(new THREE.Vector3(0,0,0));
-	geometry.vertices.push(new THREE.Vector3(0,150,0));
-	geometry.vertices.push(new THREE.Vector3(0,0,0));
-	geometry.vertices.push(new THREE.Vector3(0,0,150));
-	var line = new THREE.Line(geometry, material);
-	scene.add(line);*/
 	
 	
 	///////////
